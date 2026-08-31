@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | Consulting by Lucky</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 3rem; border-radius: 8px; border: 1px solid #e2e8f0; max-width: 500px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        h1 { color: #0f172a; margin-bottom: 1rem; }
+        p { color: #64748b; margin-bottom: 1.5rem; }
+        .details { text-align: left; background: #f1f5f9; padding: 1rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Request Received</h1>
+    <p>Thank you, <strong th:text="${request.clientName}">Client</strong>. Lucky will review your inquiry and reach out within 1 business day (EST/PST).</p>
+    <div class="details">
+        <p><strong>Company:</strong> <span th:text="${request.companyName}"></span></p>
+        <p><strong>Selected Plan:</strong> <span th:text="${request.engagementType}"></span></p>
+        <p><strong>Contact:</strong> <span th:text="${request.companyEmail}"></span></p>
+    </div>
+    <a href="/">← Return to Homepage</a>
+</div>
+</body>
+</html>

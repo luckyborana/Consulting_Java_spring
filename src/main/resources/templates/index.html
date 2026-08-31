@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting by Lucky | 15+ Yrs US Engineering Advisory</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { color: var(--text-dark); background-color: var(--white); line-height: 1.6; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; border-bottom: 1px solid var(--border); max-width: 1200px; margin: auto; }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+        .btn-primary { background-color: var(--accent); color: var(--white); padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; display: inline-block; }
+        .hero { padding: 4rem 5%; max-width: 1000px; margin: auto; text-align: center; }
+        .badge { display: inline-block; background: #dbeafe; color: #1e40af; font-size: 0.85rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 20px; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 2.75rem; line-height: 1.2; color: var(--primary); margin-bottom: 1rem; }
+        .hero p { font-size: 1.15rem; color: var(--text-light); margin-bottom: 2rem; }
+        .pricing-section { background: var(--bg-light); padding: 4rem 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: auto; }
+        .card { background: var(--white); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border); }
+        .card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+        .price { font-size: 2.25rem; font-weight: 800; color: var(--primary); margin: 1rem 0; }
+        .form-section { padding: 4rem 5%; max-width: 600px; margin: auto; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Consulting by Lucky</div>
+    <a href="#book" class="btn-primary">Book Consultation</a>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="badge">Exclusively Serving US Clients & Enterprises</span>
+        <h1>15+ Years of Systems & Web Architecture Consulting</h1>
+        <p>Direct strategic technical oversight, legacy modernization, and high-performance frontend architecture delivered in US time zones.</p>
+    </section>
+
+    <section class="pricing-section">
+        <div class="grid">
+            <div class="card">
+                <h3>Advisory Retainer</h3>
+                <div class="price">$<span th:text="${hourlyRateUSD}">225</span> <small style="font-size: 1rem; color: var(--text-light); font-weight: normal;">/ hour (USD)</small></div>
+                <p>On-demand technical audits, code reviews, and architectural guidance for engineering teams.</p>
+            </div>
+            <div class="card">
+                <h3>Fractional CTO Retainer</h3>
+                <div class="price">$<span th:text="${monthlyRetainerUSD}">12,500</span> <small style="font-size: 1rem; color: var(--text-light); font-weight: normal;">/ month (USD)</small></div>
+                <p>Dedicated strategic leadership, roadmap definition, and core delivery governance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="book" class="form-section">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Request Consultation</h2>
+        <form th:action="@{/book}" th:object="${consultationRequest}" method="post">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" th:field="*{clientName}" required placeholder="e.g. John Doe">
+            </div>
+            <div class="form-group">
+                <label>Company Work Email</label>
+                <input type="email" th:field="*{companyEmail}" required placeholder="name@company.com">
+            </div>
+            <div class="form-group">
+                <label>Company / Organization (US)</label>
+                <input type="text" th:field="*{companyName}" required placeholder="US Entity Name">
+            </div>
+            <div class="form-group">
+                <label>Engagement Model (Billed in USD)</label>
+                <select th:field="*{engagementType}">
+                    <option value="Hourly Advisory ($225/hr)">Hourly Advisory ($225/hr USD)</option>
+                    <option value="Monthly Retainer ($12,500/mo)">Monthly Retainer ($12,500/mo USD)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Project Scope & Requirements</label>
+                <textarea th:field="*{message}" rows="4" placeholder="Outline your technical challenges..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Submit Engagement Request</button>
+        </form>
+    </section>
+</main>
+
+<footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-light); font-size: 0.85rem;">
+    &copy; 2026 Consulting by Lucky. Invoices issued exclusively in USD ($).
+</footer>
+
+</body>
+</html>
